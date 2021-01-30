@@ -36,10 +36,10 @@ class MemberModel extends CI_model
 
 	public function getMemberInfo($memberID)
 	{
-		$where = "memberID = '$memberID'";
-		$query = $this->db->select("username,fname,lname,email")
+		$where = "userID = '$memberID'";
+		$query = $this->db->select("username,fname,lname,email,ruleName")
 	                 ->from("member")
-	                 ->join("rule","rule.ruleID = member.rule")
+	                 ->join("rule","rule.ruleID = member.ruleID")
 	                 ->where($where)
 	                 ->get();
 	    $result = $query->result();

@@ -19,10 +19,11 @@ class Member extends RestController {
         $this->load->model('membermodel');
     }
 
-    public function index_get()
+    public function index_get($str)
     {
+		
     	$result = array(
-    		"status"	=> md5("1234")
+    		"string_md5"	=> md5($str)
     	);
     	
     	$this->response($result,200);
@@ -59,7 +60,8 @@ class Member extends RestController {
     		"password"		=> md5($password),
     		"fname"			=> $fname,
     		"lname"			=> $lname,
-    		"email"			=> $email
+			"email"			=> $email,
+			"ruleID"		=> 3
     	);
 
     	$id = $this->membermodel->registerMember($data);
@@ -79,7 +81,7 @@ class Member extends RestController {
     	$this->response($result,200);
     }
 
-    public function checking_get()
+    public function checkusername_get()
     {
     	$username = $this->get("username");
 
